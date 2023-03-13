@@ -53,6 +53,7 @@ const SearchBar = () => {
             <div className="">
               <input
                 type="radio"
+                data-testId = "round-trip"
                 className=" "
                 value="round trip"
                 {...register("tripType", {
@@ -69,6 +70,7 @@ const SearchBar = () => {
               <input
                 type="radio"
                 className=""
+                data-testId = "one-way"
                 value="one way"
                 {...register("tripType", {
                   required: {
