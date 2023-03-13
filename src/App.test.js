@@ -22,6 +22,18 @@ test("one-way trip radio button should be rendered", () => {
   expect(radiobutton2).toBeInTheDocument();
 });
 
+test("add passenger button should be rendered", () => {
+  render(<SearchBar />);
+  const addPassenger = screen.getByTestId("add-passenger");
+  expect(addPassenger).toBeInTheDocument();
+});
+
+test("class section dropdown should be rendered", () => {
+  render(<SearchBar />);
+  const classDropdown = screen.getByTestId("class-dropdown");
+  expect(classDropdown).toBeInTheDocument();
+});
+
 test("button should be rendered", () => {
   render(<SearchBar />);
   const buttonEl = screen.getByTestId("search-button");

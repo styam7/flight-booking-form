@@ -86,6 +86,7 @@ const SearchBar = () => {
             <PersonIcon />
             <span
               className="headerSearchText"
+              data-testId = "add-passenger"
               onClick={() => setOpenOptions(!openOptions)}
             >
               {`${options.adult + options.children + options.Infants}  pax `}
@@ -160,6 +161,7 @@ const SearchBar = () => {
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
               label="Age"
+              data-testId="class-dropdown"
               defaultValue={"economy_class"}
             >
               <MenuItem value="economy_class">Economy Class</MenuItem>
