@@ -1,5 +1,4 @@
 import { GET_AIRPORT } from "./types"
-import axios from "axios"
 import data from '../data.json'
 
 

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./search.scss";
-import { useForm } from "react-hook-form";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
@@ -13,6 +11,7 @@ import Select from "@mui/material/Select";
 import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch, useSelector } from "react-redux";
 import { getAirports } from "../actions/search";
+import { useForm } from "react-hook-form";
 
 const SearchBar = () => {
 
@@ -23,6 +22,13 @@ const SearchBar = () => {
   useEffect(() => {
       dispatch(getAirports())
   }, [])
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
@@ -49,6 +55,12 @@ const SearchBar = () => {
                 type="radio"
                 className=" "
                 value="round trip"
+                {...register("tripType", {
+                  required: {
+                    value: true,
+                    message: "Trip type is required",
+                  },
+                })}
               />
               <span className="">Round trip</span>
             </div>
@@ -58,6 +70,12 @@ const SearchBar = () => {
                 type="radio"
                 className=""
                 value="one way"
+                {...register("tripType", {
+                  required: {
+                    value: true,
+                    message: "Trip type is required",
+                  },
+                })}
               />
               <span className="">One Way</span>
             </div>
@@ -183,17 +201,16 @@ const SearchBar = () => {
 
           <div className="date">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DateRangePicker"]}>
                 <DateRangePicker
                   localeText={{ start: "Departure", end: "Return" }}
                 />
-              </DemoContainer>
             </LocalizationProvider>
           </div>
 
           <button
             type="submit"
             className="search-flight"
+            data-testId = "search-button"
           >
             Search Flight
           </button>
